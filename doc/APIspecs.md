@@ -1,5 +1,19 @@
 # API Specifications
 
+## TL;DR:
+
+API Endpoint | Arguments | Purpose
+------------ | --------- | -------
+/brightness  | None      | Get ambient light intensity
+/speed       | None      | Get current speed (-8 to 8)
+/speed/set_relative | value:int, [force:int] | Set speed with relative offset
+/speed/set_absolute | value:int | Set absolute speed
+/heading/set_absolute | value:int | Command a turn
+/status | None | Request for Status Report
+/status/enable_parasitic | None | Enable Parasitic Reports
+/status/disable_parasitic | None | Disable Parasitic Reports
+
+
 ## Sensor Readout
 
 ### Reading of Ambient Light Intensity
@@ -89,7 +103,7 @@ A vehicle status update always contain the following parameters:
 
 You may request the vehicle for a status update at any time:
 
-`GET /status/get`
+`GET /status`
 
 ##### Parameters:
 
