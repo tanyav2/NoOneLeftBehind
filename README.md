@@ -30,7 +30,7 @@ The proposed design contains a customized 3D-printed chassis that houses the mot
 
 ### Hardware and Electronics
 
-Apart from the Android phone, the hardware is designed into three separate sections for ease of management. They are referred to as the Control Gateway Unit (CGU), Power Control Unit (PCU) and Power Supply Unit (PSU).
+Apart from the Android phone, the hardware is designed into three separate sections for ease of management. They are referred to as the **Control Gateway Unit (CGU)**, **Power Control Unit (PCU)** and **Power Supply Unit (PSU)**.
 
 The PSU hooks up to a QuickCharge-compatible powerbank via 4-wire USB protocol. It contains a simple resistor divider to signal to the powerbank for a voltage elevation. The signal causes the USB VBus to rise to 12V, eliminating the need for a bulky battery pack to drive motors. The PSU outputs two voltage rails, a +12V for motor control and a +3.3V for I/O and powering the microcontroller.
 
@@ -52,7 +52,7 @@ The PCU accepts instructions from the CGU over the SPI protocol and performs eng
 ##### BOM for PCU
 
 Part No | Quantity | Purpose
-------- | -------- | ---
+------- | -------- | -------
 L293D | 1 | Motor H-bridge
 Polyfuses | 2 | Disconnects the motor when overcurrent (to protect the PSU)
 Motors | 2 | Rotates the wheels
@@ -67,7 +67,7 @@ It provides a WiFi endpoint to communicate with the Android phone by exposing a 
 ##### BOM for CGU
 
 Part No | Quantity | Purpose
-------- | -------- | ---
+------- | -------- | -------
 ESP-12F | 1 | CPU for the CGU
 HC05 | 1 | Serial debugging interface for CGU
 GY-521 | 1 | Accelerometer and gyroscope
@@ -82,6 +82,7 @@ The phone accepts reports from the CGU about current heading, distance since las
 ## Projected Timeline
 
 Week | Overall | Structural | Electronics | Android
+---- | ------- | ---------- | ----------- | -------
 10 | Complete API documentation | Begin design | Complete CGU's API simulator in Python |
 11 | Individual component testing | 3D-Prints due | Complete CGU | Complete mapping and facial recognition algorithm
 12 | Integration Testing | Fully Assembled | Complete PSU/PCU | Mostly Complete
