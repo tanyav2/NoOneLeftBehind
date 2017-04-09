@@ -1,4 +1,4 @@
-# LazyAttendance
+# NoOneLeftBehind
 
 _Project Proposal_
 
@@ -91,4 +91,14 @@ Week | Overall | Structural | Electronics | Android
 
 ## Further Goals
 
-To be continued.
+The car is currently able to drive itself on an elevated surface, so it gets enough altitude to capture faces. However, such a surface (e.g. Tables) restrict the mobility of the vehicle and provents it from achieving a full-room scan. In the further development of this project, the car shall be able to identify a person from the floor. There are three viable approaches to consider:
+
+    1. Optical skewing of the image so faces are still identifiable from the sharp angle
+    2. Telescoping camera mount, which elevates the camera
+    3. Alternative identification methods, such as picking phone's Bluetooth signals or imaging shoes.
+
+Additionally, the camera gimbal mount is currently fixed on the design. In further attempts of development, the gimbal can be made autonomous.
+
+Lastly, even though the car can be controlled without the prescence of the phone, it still heavily relies on it for its autonomous driving features and image processing. In further stages of the project, processing will be carried out onboard the vehicle with more sophisticated equipments, such as a Tegra or Jetson TX1 board. The car can also be made to sustain high temperature and structural stress, therefore to extend its use into emergency situations, where head-counts are needed without risking rescurers' lives.
+
+These further goals are for reference and demonstration of the scalability of the project, as well as the capacity for further exploration within the design concept. They may or may not be implemented in the timespan of ECE 110, and are not part of the primary objective of this final project.
