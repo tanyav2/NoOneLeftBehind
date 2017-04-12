@@ -34,7 +34,7 @@ Apart from the Android phone, the hardware is designed into three separate secti
 
 The PSU hooks up to a QuickCharge-compatible powerbank via 4-wire USB protocol. It contains a simple resistor divider to signal to the powerbank for a voltage elevation. The signal causes the USB VBus to rise to 12V, eliminating the need for a bulky battery pack to drive motors. The PSU outputs two voltage rails, a +12V for motor control and a +3.3V for I/O and powering the microcontroller.
 
-##### BOM for PSU
+##### Bill Of Materials (BOM) for PSU
 
 Part No | Quantity | Purpose
 ------- | -------- | ---

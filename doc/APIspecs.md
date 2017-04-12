@@ -6,12 +6,12 @@ API Endpoint | Arguments | Purpose
 ------------ | --------- | -------
 /brightness  | None      | Get ambient light intensity
 /speed       | None      | Get current speed (-8 to 8)
-/speed/set_relative | value:int, [force:int] | Set speed with relative offset
-/speed/set_absolute | value:int | Set absolute speed
-/heading/set_absolute | value:int | Command a turn
+/speed/set-relative | value:int, [force:int] | Set speed with relative offset
+/speed/set-absolute | value:int | Set absolute speed
+/heading/set-absolute | value:int | Command a turn
 /status | None | Request for Status Report
-/status/enable_parasitic | None | Enable Parasitic Reports
-/status/disable_parasitic | None | Disable Parasitic Reports
+/status/enable-parasitic | None | Enable Parasitic Reports
+/status/disable-parasitic | None | Disable Parasitic Reports
 
 
 ## Sensor Readout
@@ -52,7 +52,7 @@ The speed of the vehicle is defined as a value from -8 to 8. Positive or negativ
 
 If you wish to set the speed with an absolute speed value, use this API:
 
-`GET /speed/set_absolute`
+`GET /speed/set-absolute`
 
 ##### Parameters:
 
@@ -66,7 +66,7 @@ If you wish to set the speed with an absolute speed value, use this API:
 
 If you wish to perform an acceleration or deceleration, use this API:
 
-`GET /speed/set_relative`
+`GET /speed/set-relative`
 
 ##### Parameters:
 
@@ -81,7 +81,7 @@ If you wish to perform an acceleration or deceleration, use this API:
 
 When commanding vehicle to perform a turn, it will not move forward, and lateral speed is **reset** to 0.
 
-`GET /heading/set_relative`
+`GET /heading/set-relative`
 
 ##### Parameters:
 
@@ -95,9 +95,9 @@ When commanding vehicle to perform a turn, it will not move forward, and lateral
 ## Status Update
 
 A vehicle status update always contain the following parameters:
-- `steps_traversed`: Integer. Motor steps traversed since last report.
+- `steps-traversed`: Integer. Motor steps traversed since last report.
 - `obstacle`: Integer. 0 if no obstacle was encountered since last report, 1 if the vehicle has stopped due to obstacle.
-- `sys_status`: Integer. 0 if system is running fine. (I think there won't be any error codes but just leave it there)
+- `sys-status`: Integer. 0 if system is running fine. (I think there won't be any error codes but just leave it there)
 
 ### Passive Status Request
 
@@ -111,7 +111,7 @@ You may request the vehicle for a status update at any time:
 
 ##### Return value:
 
-`{"status": "ok", "steps_traversed": 10, "obstacle": 0, "sys_status":0}`
+`{"status": "ok", "steps-traversed": 10, "obstacle": 0, "sys-status":0}`
 
 ### Parasitic Status Request
 
@@ -121,6 +121,6 @@ Parasitic Status is disabled by default. **Enable with caution** because all sta
 
 To enable or disable them, just:
 
-`GET /status/enable_parasitic`
+`GET /status/enable-parasitic`
 
-`GET /status/disable_parasitic`
+`GET /status/disable-parasitic`
