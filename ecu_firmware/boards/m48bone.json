@@ -10,5 +10,11 @@
 		"maximum_ram_size": "512",
 		"protocol": "usbasp",
 	}
-	"vendor": "ece110"
+	"vendor": "ece110",
+	"fuses": {
+		"efuse": "0xFF",
+		"hfuse": "0xD7",
+		"lfuse": "0xE2",
+		"lock": "0x3F"
+	}
 }
