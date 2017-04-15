@@ -1,20 +1,21 @@
 {
 	"build": {
-		"f_cpu": "8000000L",
-		"mcu": "m48",
-		"variant": "standard",
+		"f_cpu": "8000000UL",
+		"mcu": "atmega48",
+		"variant": "standard"
 	},
 	"name": "ATmega48V Barebone",
 	"upload": {
 		"maximum_size": "4096",
 		"maximum_ram_size": "512",
-		"protocol": "usbasp",
-	}
+		"protocol": "usbasp"
+	},
 	"vendor": "ece110",
 	"fuses": {
 		"efuse": "0xFF",
 		"hfuse": "0xD7",
 		"lfuse": "0xE2",
 		"lock": "0x3F"
-	}
+	},
+	"url": "http://aaaaa.com"
 }
