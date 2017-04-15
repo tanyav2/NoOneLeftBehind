@@ -1,6 +1,6 @@
 {
 	"build": {
-		"f_cpu": "8000000UL",
+		"f_cpu": "8000000L",
 		"mcu": "atmega48",
 		"variant": "standard"
 	},
