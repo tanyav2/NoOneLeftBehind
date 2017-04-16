@@ -6,6 +6,8 @@
 
 #include "global_car.h"
 
+#define DEBUG 1
+
 /* SPI is in Mode 0
   => SPCR
   SPIE SPE DORD MSTR CPOL CPHA SPR1 SPR0
@@ -43,6 +45,16 @@ void adc_init() {
     ADCSRA |= _BV(ADEN) | _BV(ADPS2) | _BV(ADPS1) | _BV(ADSC);
 }
 
+void int_init() {
+    DDRD &= ~(_BV(PD2) | _BV(PD3)); // INT0 and INT1 Input
+    PORTD &= ~(_BV(PD2) | _BV(PD3)); // Clear pullups
+    EICRA |= _BV(ISC11) | _BV(ISC01); // Trig on falling edge
+    EIMSK |= _BV(INT1) | _BV(INT0);
+    #ifdef DEBUG
+        DDRD |= _BV(PD7);
+    #endif
+}
+
 /* SPI Instructions
   Instruction       MSB LSB
   ====================================
@@ -76,8 +88,7 @@ void parse_spi_instr(uint8_t instr) {
     } else if (instr & 0x80) { //Turn
         int8_t targ_heading = instr & 0x1F;
         if (instr & 0x20) targ_heading = ~targ_heading + 1;
-        // TODO: Use Direct Turn
-        car.set_heading(targ_heading);
+        car.direct_turn(targ_heading);
         spi_data.payload.speed = (int16_t)car.get_speed();
         spi_data.payload.heading = (int16_t)car.get_heading();
         enable_transaction(0);
@@ -92,13 +103,13 @@ void parse_spi_instr(uint8_t instr) {
             enable_transaction(0);
             break;
         case 0x32: // get obstacles
-            spi_data.payload.raw_value = 0;
+            spi_data.payload.raw_value = car.obstacle_flag;
             enable_transaction(0);
             break;
         case 0x33: // get_steps
             // TODO: Aggregate and average left & Right
-            spi_data.payload.raw_value = car.lsteps;
-            enable_transaction(car.obstacle_flag);
+            spi_data.payload.speed = car.lsteps;
+            enable_transaction(0);
             car.lsteps = 0;
             car.rsteps = 0;
             break;
@@ -117,5 +128,37 @@ ISR(SPI_STC_vect) {
     } else {
         if (SPDR) parse_spi_instr(SPDR);
     }
+    sei();
+}
+
+ISR(INT0_vect) {
+    cli();
+    if (car.speed >= 0) car.lsteps ++;
+    else car.lsteps --;
+    if (car.turning == 1) { // Turn Right
+        if (car.lsteps >= car.turn_thresh) {
+            car.restore(1,1);
+            car.turning = 0;
+        }
+    }
+    #ifdef DEBUG
+        DDRD ^= _BV(PD7);
+    #endif
+    sei();
+}
+
+ISR(INT1_vect) {
+    cli();
+    if (car.speed >= 0) car.rsteps ++;
+    else car.rsteps --;
+    if (car.turning == -1) { // Turn Left
+        if (car.rsteps >= car.turn_thresh) {
+            car.restore(1,1);
+            car.turning = 0;
+        }
+    }
+    #ifdef DEBUG
+        DDRD ^= _BV(PD7);
+    #endif
     sei();
 }

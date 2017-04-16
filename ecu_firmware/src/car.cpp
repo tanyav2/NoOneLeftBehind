@@ -2,8 +2,11 @@
 
 #define DEBUG 1
 #define BAUD 9600
+#define TURN_AMOUNT 32
 
 #include <util/setbaud.h>
+#include <avr/interrupt.h>
+
 
 /*
   Controller Assignment
@@ -101,4 +104,17 @@ void Car::set_speed(int speed) {
 void Car::set_heading(int heading) {
     this -> heading = (heading > 8) ? 8 : (heading < -8) ? -8: heading;
     this -> refresh_states();
+}
+
+void Car::direct_turn(int heading) {
+    // Set volatile flags
+    cli();
+    this -> lsteps = 0;
+    this -> rsteps = 0;
+    this -> turn_thresh = heading * TURN_AMOUNT;
+    if (this -> turn_thresh < 0) turn_thresh = 0-turn_thresh;
+    this -> turning = heading > 0 ? 1 : -1;
+    sei();
+    // Set car on the run
+    this -> set_heading(heading > 0 ? 4 : -4);
 }

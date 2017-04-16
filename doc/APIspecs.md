@@ -2,16 +2,16 @@
 
 ## TL;DR:
 
-API Endpoint | Arguments | Purpose
------------- | --------- | -------
-/brightness  | None      | Get ambient light intensity
-/speed       | None      | Get current speed (-8 to 8)
-/speed/set-relative | value:int, [force:int] | Set speed with relative offset
-/speed/set-absolute | value:int | Set absolute speed
-/heading/set-absolute | value:int | Command a turn
-/status | None | Request for Status Report
-/status/enable-parasitic | None | Enable Parasitic Reports
-/status/disable-parasitic | None | Disable Parasitic Reports
+API Endpoint | Implemented? | Arguments | Purpose
+------------ | ------------ | --------- | -------
+/brightness  | No | None  | Get ambient light intensity
+/speed       | Yes | None  | Get current speed (-8 to 8)
+/speed/set-relative | Yes | value:int, [force:int] | Set speed with relative offset
+/speed/set-absolute | Yes | value:int | Set absolute speed
+/heading/set-absolute | Yes | value:int | Command a turn correct to 15 degrees.
+/status | Partial | None | Request for Status Report *(Obstacle flag is not complete.)
+/status/enable-parasitic | No | None | Enable Parasitic Reports
+/status/disable-parasitic | No |  None | Disable Parasitic Reports
 
 
 ## Sensor Readout

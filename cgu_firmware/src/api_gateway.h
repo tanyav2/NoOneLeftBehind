@@ -44,11 +44,19 @@ void setup_routes() {
     });
 
     server.on("/heading/set-relative", [](){
-        server.send(404, MIME, TODO);
+        int8_t value = server.arg("value").toInt() / 15;
+        set_heading_relative(value);
+        server.send(200, MIME, String("{")+STOK+"}");
     });
 
     server.on("/status", [](){
-        server.send(404, MIME, TODO);
+        Status_vec data = get_status();
+        String str = String("{") + STOK +
+            ", \"steps-traversed\": " + String(data.steps) +
+            ", \"obstacle\": " + String(data.obstacles) +
+            ", \"sys-status\": " + String(data.status) +
+            "}";
+        server.send(200, MIME, str);
     });
 
     server.on("/status/enable-parasitic", [](){
