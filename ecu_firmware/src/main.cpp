@@ -6,13 +6,15 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-#include "global_car.h"
 #include "async.h"
+#include "global_car.h"
 
 
 int main() {
     // Initialize Hardware
     spi_init();
+    adc_init();
+    int_init();
     sei(); //Initialize interrupt and Program Start
     while (1);
 }
