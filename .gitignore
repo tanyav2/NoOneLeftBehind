@@ -410,3 +410,7 @@ ENV/
 .ropeproject
 
 # End of https://www.gitignore.io/api/c++,cmake,python,android,eclipse,intellij,androidstudio
+.pioenvs
+.piolibdeps
+.clang_complete
+.gcc-flags.json
