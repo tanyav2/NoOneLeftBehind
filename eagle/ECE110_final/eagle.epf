@@ -1,0 +1,41 @@
+[Eagle]
+Version="08 01 00"
+Platform="Mac OS X"
+Globals="Globals"
+Desktop="Desktop"
+
+[Globals]
+AutoSaveProject=1
+UsedLibrary="/Applications/EAGLE-8.1.0/lbr/74xx-us.lbr"
+UsedLibrary="/Applications/EAGLE-8.1.0/lbr/atmel.lbr"
+UsedLibrary="/Applications/EAGLE-8.1.0/lbr/ic-package.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Common Atmel Processors.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/LilyPad-Wearables.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Aesthetics.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-AnalogIC.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Boards.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Capacitors.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Connectors.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-DigitalIC.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-DiscreteSemi.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Displays.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Electromechanical.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-FreqCtrl.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-LED.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Passives.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-PowerIC.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-RF.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Resistors.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Retired.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/SparkFun-Eagle-Libraries/SparkFun-Sensors.lbr"
+UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/E14_Arduino.lbr"
+
+[Win_1]
+Type="Control Panel"
+Loc="0 -22 1199 577"
+State=2
+Number=0
+
+[Desktop]
+Screen="3000 1920"
+Window="Win_1"
