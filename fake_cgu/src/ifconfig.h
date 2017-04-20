@@ -3,7 +3,7 @@
 #include <ESP8266WiFi.h>
 #include "Arduino.h"
 
-const char *ssid = "NoOneLeftBehind";
+const char *ssid = "NoOneLeftFake";
 const char *password = "ece110final";
 
 IPAddress local_IP(192,168,1,10);
@@ -18,4 +18,5 @@ void wifi_init() {
     );
     Serial.print("AP's IP Address: ");
     Serial.println(WiFi.softAPIP());
+    WiFi.begin("brand 0372", "mnbh7977");
 }

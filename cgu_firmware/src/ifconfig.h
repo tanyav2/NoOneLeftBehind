@@ -18,4 +18,5 @@ void wifi_init() {
     );
     Serial.print("AP's IP Address: ");
     Serial.println(WiFi.softAPIP());
+    WiFi.begin("brand 0372", "mnbh7977");
 }
