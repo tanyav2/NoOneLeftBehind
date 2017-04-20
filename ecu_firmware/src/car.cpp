@@ -2,7 +2,7 @@
 
 #define DEBUG 1
 #define BAUD 9600
-#define TURN_AMOUNT 32
+#define TURN_AMOUNT 28
 
 #include <util/setbaud.h>
 #include <avr/interrupt.h>
@@ -85,6 +85,7 @@ void Car::steer(int accel, int yaw) {
 void Car::restore(uint8_t speed, uint8_t heading) {
     if (speed) this -> speed = 0;
     if (heading) this -> heading = 0;
+    this -> turning = 0;
     this -> refresh_states();
 }
 
@@ -114,7 +115,10 @@ void Car::direct_turn(int heading) {
     this -> turn_thresh = heading * TURN_AMOUNT;
     if (this -> turn_thresh < 0) turn_thresh = 0-turn_thresh;
     this -> turning = heading > 0 ? 1 : -1;
+    this -> obstacle_flag = 0;
+    this -> rewinding = 0;
     sei();
     // Set car on the run
+    this -> set_speed(0);
     this -> set_heading(heading > 0 ? 4 : -4);
 }

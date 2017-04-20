@@ -18,5 +18,6 @@ class Car {
         volatile int32_t rsteps = 0;
         volatile uint8_t obstacle_flag = 0;
         volatile int8_t turning = 0;
+        volatile int8_t rewinding = 0;
         volatile int16_t turn_thresh = 0;
 };
