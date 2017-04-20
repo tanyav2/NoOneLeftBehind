@@ -13,10 +13,10 @@
 
 uint8_t status_parasitic = 0;
 
-int16_t reported_steps = 0;
-int32_t cumulative_steps = 0;
-uint8_t current_obstacle = 0;
-int8_t current_speed = 0;
+volatile int16_t reported_steps = 0;
+volatile int32_t cumulative_steps = 0;
+volatile uint8_t current_obstacle = 0;
+volatile int8_t current_speed = 0;
 
 
 ESP8266WebServer server(80);
