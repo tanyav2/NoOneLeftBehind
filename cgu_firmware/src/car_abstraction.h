@@ -26,14 +26,14 @@ int8_t set_speed_relative(int8_t offset) {
     set_speed_absolute(get_speed()+offset);
 }
 
-Status_vec get_status() {
+Status_vec get_status(uint8_t nc=0) {
     Status_vec tmp_vec;
     SPI_record data;
     tmp_vec.status = 0;
-    data = spi_exec(0x33);
+    data = spi_exec(nc ? 0x31 : 0x33);
     tmp_vec.steps = data.speed;
     if (data.payload == 0xffffffff) tmp_vec.status = 1;
-    data = spi_exec(0x32);
+    data = spi_exec(nc ? 0x30 : 0x32);
     tmp_vec.obstacles = (int16_t) data.payload;
     if (data.payload == 0xffffffff) tmp_vec.status = 1;
     return tmp_vec;
