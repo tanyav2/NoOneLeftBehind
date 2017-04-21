@@ -7,16 +7,16 @@
 #include "global_car.h"
 
 /* Obstacle Avoidance
-  - Sensor 1: Front barrier, ADC1, Normal = 0
-  - Sensor 2: Desk Surface, ADC2, Normal = 1 (in contact)
+  - Sensor 1: Front barrier, ADC2, Normal = 1
+  - Sensor 2: Desk Surface, ADC3, Normal = 0 (in contact)
 */
 
 // Sensor Enable Mask
-// 1 Means Enable:     M --543210 L
-uint8_t SENS_EN_MASK = 0b00000110; // TODO: Reenable the sensors
+// 1 Means Enable:       M --543210 L
+uint8_t SENS_EN_MASK   = 0b00011000; // TODO: Reenable the sensors
 // Sensor Trigger Mask
 // 1 Means Norm High:    M --543210 L
-uint8_t SENS_TRIG_MASK = 0b00000110;
+uint8_t SENS_TRIG_MASK = 0b00010000;
 // Obstacle Detection: SENS_EN_MASK & (SENS_TRIG_MASK ^ SENS_READOUTS)
 
 #define OBSTACLE_REWIND_STEPS -10

@@ -23,7 +23,7 @@ int8_t set_speed_absolute(int8_t speed) {
 }
 
 int8_t set_speed_relative(int8_t offset) {
-    set_speed_absolute(get_speed()+offset);
+    return set_speed_absolute(get_speed()+offset);
 }
 
 Status_vec get_status(uint8_t nc=0) {

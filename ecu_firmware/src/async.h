@@ -151,19 +151,19 @@ void parse_spi_instr(uint8_t instr) {
             enable_transaction(0);
             break;
         case 0x18: // bypass_1
-            SENS_EN_MASK &= ~(0b00000010);
+            SENS_EN_MASK &= ~(1 << 4);
             enable_transaction(0);
             break;
         case 0x1A: // bypass_2
-            SENS_EN_MASK &= ~(0b00000100);
+            SENS_EN_MASK &= ~(1 << 3);
             enable_transaction(0);
             break;
         case 0x19: // enable_1
-            SENS_EN_MASK |= 0b00000010;
+            SENS_EN_MASK |= 1 << 4;
             enable_transaction(0);
             break;
         case 0x1B: // enable_2
-            SENS_EN_MASK |= 0b00000100;
+            SENS_EN_MASK |= 1 << 3;
             enable_transaction(0);
             break;
     }
