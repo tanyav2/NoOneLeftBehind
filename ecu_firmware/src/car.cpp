@@ -45,7 +45,6 @@ Car::Car() {
 }
 
 void Car::refresh_states() {
-    int raw_l, raw_r;
     raw_l = (this -> speed) * 32;
     raw_r = raw_l;
     // Calculate heading: negative = left
@@ -55,19 +54,25 @@ void Car::refresh_states() {
     raw_l = (raw_l > 255) ? 255 : raw_l;
     raw_r = (raw_r < -255) ? -255 : raw_r;
     raw_r = (raw_r > 255) ? 255 : raw_r;
-    if (raw_l > 0) {
+    update_drive_system();
+}
+
+void Car::update_drive_system() {
+    int l = raw_l - offset_l;
+    int r = raw_r - offset_r;
+    if (l > 0) {
         PORTB |= _BV(PB6);
-        OCR0B = (uint8_t) (255 - raw_l);
+        OCR0B = (uint8_t) (255 - l);
     } else {
         PORTB &= ~(_BV(PB6));
-        OCR0B = (uint8_t) (0 - raw_l);
+        OCR0B = (uint8_t) (0 - l);
     }
-    if (raw_r > 0) {
+    if (r > 0) {
         PORTB |= _BV(PB7);
-        OCR0A = (uint8_t) (255 - raw_r);
+        OCR0A = (uint8_t) (255 - r);
     } else {
         PORTB &= ~(_BV(PB7));
-        OCR0A = (uint8_t) (0 - raw_r);
+        OCR0A = (uint8_t) (0 - r);
     }
 }
 

@@ -6,6 +6,7 @@
 
 #include "global_car.h"
 #include "obstacle.h"
+#include "calibration.h"
 
 
 /* SPI is in Mode 0
@@ -217,5 +218,6 @@ ISR(INT1_vect) {
 ISR(TIMER1_OVF_vect) {
     if (adas_enable) {
         obstacle_avoid();
+        calibrate_drive();
     }
 }
