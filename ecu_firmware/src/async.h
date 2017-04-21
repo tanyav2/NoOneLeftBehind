@@ -58,7 +58,7 @@ void int_init() {
     #endif
     obstacle_init();
     // Timer Interrupts
-    TCCR1B |= _BV(CS11); // Prescale /64, trig every 0.5s
+    TCCR1B |= _BV(CS11); // Prescale /8, trig every 0.0625s
     TIMSK1 |= _BV(TOIE1); // Enable Timer 1 Overflow Interrpt at every 0.5s
 }
 
