@@ -2,8 +2,7 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <Ticker.h>
-#include <Hash.h>
-// #include <ESP8266WebServer.h>
+#include <ESP8266WebServer.h>
 
 #include "ifconfig.h"
 #include "api_gateway.h"
@@ -39,5 +38,5 @@ void setup() {
 
 
 void loop() {
-    // server.handleClient();
+    server.handleClient();
 }
