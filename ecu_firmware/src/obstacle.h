@@ -34,7 +34,7 @@ void obstacle_avoid() {
     if (!car.turning)
         if (obstacle_detect() && (car.speed > 0)) {
             car.obstacle_flag = 1;
-            car.set_speed(0);
+            car.restore(1,1);
             /*
             car.rewinding = 1;
             car.set_speed(-3);

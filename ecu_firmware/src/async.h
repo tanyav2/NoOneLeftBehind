@@ -51,6 +51,7 @@ void int_init() {
     // External Interrupts
     DDRD &= ~(_BV(PD2) | _BV(PD3)); // INT0 and INT1 Input
     PORTD &= ~(_BV(PD2) | _BV(PD3)); // Clear pullups
+    DDRD |= _BV(PD1);
     EICRA |= _BV(ISC11) | _BV(ISC01); // Trig on falling edge
     EIMSK |= _BV(INT1) | _BV(INT0);
     #ifdef DEBUG
@@ -145,6 +146,8 @@ void parse_spi_instr(uint8_t instr) {
             break;
         case 0x12: // disable_ADAS
             adas_enable = 0;
+            car.offset_l = 0;
+            car.offset_r = 0;
             enable_transaction(0);
             break;
         case 0x13: // Manual Obstacle Override
@@ -188,8 +191,10 @@ ISR(SPI_STC_vect) {
 
 ISR(INT0_vect) {
     cli();
-    if (car.speed >= 0) car.lsteps ++;
-        else car.lsteps --;
+    if (car.speed >= 0) {
+        car.lsteps ++;
+        car.lsteps_sofar ++;
+    } else car.lsteps --;
     if (car.turning == 1 && car.lsteps >= car.turn_thresh) car.restore(1,1);
     /*
     if (car.rewinding) {
@@ -207,8 +212,10 @@ ISR(INT0_vect) {
 
 ISR(INT1_vect) {
     cli();
-    if (car.speed >= 0) car.rsteps ++;
-        else car.rsteps --;
+    if (car.speed >= 0) {
+        car.rsteps ++;
+        car.rsteps_sofar ++;
+    } else car.rsteps --;
     if (car.turning == -1 && car.rsteps >= car.turn_thresh) car.restore(1,1);
     #ifdef DEBUG
         DDRD ^= _BV(PD7);
