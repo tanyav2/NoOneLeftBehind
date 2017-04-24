@@ -390,6 +390,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 </package>
+<package name="EIA3528">
+<wire x1="-0.9" y1="-1.6" x2="-2.6" y2="-1.6" width="0.2032" layer="21"/>
+<wire x1="-2.6" y1="-1.6" x2="-2.6" y2="1.55" width="0.2032" layer="21"/>
+<wire x1="-2.6" y1="1.55" x2="-0.9" y2="1.55" width="0.2032" layer="21"/>
+<wire x1="1" y1="-1.55" x2="2.2" y2="-1.55" width="0.2032" layer="21"/>
+<wire x1="2.2" y1="-1.55" x2="2.6" y2="-1.2" width="0.2032" layer="21"/>
+<wire x1="2.6" y1="-1.2" x2="2.6" y2="1.25" width="0.2032" layer="21"/>
+<wire x1="2.6" y1="1.25" x2="2.2" y2="1.55" width="0.2032" layer="21"/>
+<wire x1="2.2" y1="1.55" x2="1" y2="1.55" width="0.2032" layer="21"/>
+<wire x1="2.2" y1="1.55" x2="1" y2="1.55" width="0.2032" layer="21"/>
+<wire x1="0.609" y1="1.311" x2="0.609" y2="-1.286" width="0.2032" layer="21" style="longdash"/>
+<smd name="C" x="-1.65" y="0" dx="2.5" dy="1.2" layer="1" rot="R90"/>
+<smd name="A" x="1.65" y="0" dx="2.5" dy="1.2" layer="1" rot="R90"/>
+<text x="-2.27" y="-1.27" size="1.27" layer="25" rot="R90">&gt;NAME</text>
+<text x="3.24" y="-1.37" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="CAP">
@@ -401,6 +417,18 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="-2.032" y1="1.524" x2="2.032" y2="2.032" layer="94"/>
 <pin name="1" x="0" y="5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
 <pin name="2" x="0" y="-2.54" visible="off" length="short" direction="pas" swaplevel="1" rot="R90"/>
+</symbol>
+<symbol name="CAP_POL">
+<wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.016" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="-1" x2="2.4892" y2="-1.8542" width="0.254" layer="94" curve="-37.878202" cap="flat"/>
+<wire x1="-2.4669" y1="-1.8504" x2="0" y2="-1.0161" width="0.254" layer="94" curve="-37.376341" cap="flat"/>
+<text x="1.016" y="0.635" size="1.778" layer="95">&gt;NAME</text>
+<text x="1.016" y="-4.191" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="-2.253" y1="0.668" x2="-1.364" y2="0.795" layer="94"/>
+<rectangle x1="-1.872" y1="0.287" x2="-1.745" y2="1.176" layer="94"/>
+<pin name="+" x="0" y="2.54" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<pin name="-" x="0" y="-5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R90"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -421,6 +449,28 @@ Standard decoupling cap</description>
 <technology name="">
 <attribute name="PROD_ID" value="CAP-00810"/>
 <attribute name="VALUE" value="0.1uF" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="47UF-10V-10%(TANT)" prefix="C" uservalue="yes">
+<description>CAP-08310 &lt;BR&gt;
+47uF Tantalum SMT&lt;br&gt;
+ 10V 10% (EIA-3528)</description>
+<gates>
+<gate name="G$1" symbol="CAP_POL" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="EIA3528">
+<connects>
+<connect gate="G$1" pin="+" pad="A"/>
+<connect gate="G$1" pin="-" pad="C"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="CAP-08310"/>
+<attribute name="VALUE" value="47uF" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -2761,10 +2811,16 @@ LilyPad 1206- DIO-09955</description>
 <part name="S1" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2-CLOSED" device="" value="RESET"/>
 <part name="D1" library="SparkFun-LED" deviceset="LED-WHITE" device="" value="STATUS"/>
 <part name="R3" library="SparkFun-Resistors" deviceset="0.3OHM-1/8W-1%(0805)" device="" value="0.3"/>
+<part name="C2" library="SparkFun-Capacitors" deviceset="47UF-10V-10%(TANT)" device="" value="2.2uF"/>
+<part name="SUPPLY5" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
+<part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
+<frame x1="20.32" y1="76.2" x2="78.74" y2="109.22" columns="8" rows="5" layer="91"/>
+<text x="27.94" y="91.44" size="1.778" layer="91">Bus Decoupler
+Reduce Ripple</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="139.7" y="43.18"/>
@@ -2772,8 +2828,8 @@ LilyPad 1206- DIO-09955</description>
 <instance part="GND1" gate="1" x="15.24" y="0"/>
 <instance part="C1" gate="G$1" x="15.24" y="35.56"/>
 <instance part="U2" gate="G$1" x="60.96" y="40.64"/>
-<instance part="MOTOR" gate="G$1" x="187.96" y="38.1" rot="R180"/>
-<instance part="SPI" gate="G$1" x="187.96" y="15.24" rot="R180"/>
+<instance part="MOTOR" gate="G$1" x="175.26" y="38.1" rot="R180"/>
+<instance part="SPI" gate="G$1" x="129.54" y="15.24" rot="R180"/>
 <instance part="SUPPLY2" gate="G$1" x="119.38" y="55.88"/>
 <instance part="GND2" gate="1" x="124.46" y="30.48"/>
 <instance part="GATE1" gate="G$1" x="91.44" y="104.14" rot="R270"/>
@@ -2789,6 +2845,9 @@ LilyPad 1206- DIO-09955</description>
 <instance part="S1" gate="G$1" x="27.94" y="66.04"/>
 <instance part="D1" gate="G$1" x="88.9" y="-7.62" rot="R270"/>
 <instance part="R3" gate="G$1" x="78.74" y="-7.62"/>
+<instance part="C2" gate="G$1" x="58.42" y="93.98"/>
+<instance part="SUPPLY5" gate="G$1" x="58.42" y="96.52"/>
+<instance part="GND5" gate="1" x="58.42" y="86.36"/>
 </instances>
 <busses>
 </busses>
@@ -2842,6 +2901,10 @@ LilyPad 1206- DIO-09955</description>
 <wire x1="139.7" y1="58.42" x2="165.1" y2="58.42" width="0.1524" layer="91"/>
 <junction x="165.1" y="58.42"/>
 </segment>
+<segment>
+<pinref part="C2" gate="G$1" pin="-"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="VCC" class="0">
 <segment>
@@ -2888,6 +2951,10 @@ LilyPad 1206- DIO-09955</description>
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
 <pinref part="SUPPLY4" gate="G$1" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="C2" gate="G$1" pin="+"/>
+<pinref part="SUPPLY5" gate="G$1" pin="VCC"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -2938,20 +3005,20 @@ LilyPad 1206- DIO-09955</description>
 <segment>
 <pinref part="U1" gate="G$1" pin="OUT1"/>
 <pinref part="MOTOR" gate="G$1" pin="1"/>
-<wire x1="154.94" y1="40.64" x2="182.88" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="40.64" x2="170.18" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="MOTOR" gate="G$1" pin="2"/>
 <pinref part="U1" gate="G$1" pin="OUT2"/>
-<wire x1="182.88" y1="38.1" x2="154.94" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="38.1" x2="154.94" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="OUT3"/>
-<wire x1="154.94" y1="35.56" x2="182.88" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="35.56" x2="170.18" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="MOTOR" gate="G$1" pin="3"/>
 </segment>
 </net>
@@ -2959,13 +3026,13 @@ LilyPad 1206- DIO-09955</description>
 <segment>
 <pinref part="MOTOR" gate="G$1" pin="4"/>
 <pinref part="U1" gate="G$1" pin="OUT4"/>
-<wire x1="182.88" y1="33.02" x2="154.94" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="33.02" x2="154.94" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
 <pinref part="SPI" gate="G$1" pin="4"/>
-<wire x1="182.88" y1="10.16" x2="99.06" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="10.16" x2="99.06" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="10.16" x2="99.06" y2="15.24" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="PB2(SS/OC1B)"/>
 <wire x1="99.06" y1="15.24" x2="86.36" y2="15.24" width="0.1524" layer="91"/>
@@ -2975,13 +3042,13 @@ LilyPad 1206- DIO-09955</description>
 <segment>
 <pinref part="SPI" gate="G$1" pin="3"/>
 <pinref part="U2" gate="G$1" pin="PB3(MOSI/OC2)"/>
-<wire x1="182.88" y1="12.7" x2="86.36" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="12.7" x2="86.36" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
 <segment>
 <pinref part="SPI" gate="G$1" pin="2"/>
-<wire x1="182.88" y1="15.24" x2="101.6" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="15.24" x2="101.6" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="15.24" x2="101.6" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="7.62" x2="96.52" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="7.62" x2="96.52" y2="10.16" width="0.1524" layer="91"/>
@@ -2992,7 +3059,7 @@ LilyPad 1206- DIO-09955</description>
 <net name="N$12" class="0">
 <segment>
 <pinref part="SPI" gate="G$1" pin="1"/>
-<wire x1="182.88" y1="17.78" x2="93.98" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="17.78" x2="93.98" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="17.78" x2="93.98" y2="7.62" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="PB5(SCK)"/>
 <wire x1="93.98" y1="7.62" x2="86.36" y2="7.62" width="0.1524" layer="91"/>
@@ -3065,4 +3132,10 @@ LilyPad 1206- DIO-09955</description>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>

@@ -7,6 +7,7 @@ Desktop="Desktop"
 [Globals]
 AutoSaveProject=1
 UsedLibrary="/Applications/EAGLE-8.1.0/lbr/74xx-us.lbr"
+UsedLibrary="/Applications/EAGLE-8.1.0/lbr/ESP8266-ESP12.lbr"
 UsedLibrary="/Applications/EAGLE-8.1.0/lbr/atmel.lbr"
 UsedLibrary="/Applications/EAGLE-8.1.0/lbr/ic-package.lbr"
 UsedLibrary="/Users/jimmy/Documents/eagle/Common Atmel Processors.lbr"
@@ -32,10 +33,10 @@ UsedLibrary="/Users/jimmy/Documents/eagle/Downloaded/E14_Arduino.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="0 -22 1199 577"
+Loc="-272 617 927 1216"
 State=2
 Number=0
 
 [Desktop]
-Screen="3000 1920"
+Screen="1920 1200"
 Window="Win_1"
