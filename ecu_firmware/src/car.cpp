@@ -2,7 +2,8 @@
 
 #define DEBUG 1
 #define BAUD 9600
-#define TURN_AMOUNT 32
+#define TURN_L 22
+#define TURN_R 20
 
 #include <util/setbaud.h>
 #include <avr/interrupt.h>
@@ -45,9 +46,8 @@ Car::Car() {
 }
 
 void Car::refresh_states() {
-    int raw_l, raw_r;
-    raw_l = (this -> speed) * 32;
-    raw_r = raw_l;
+    raw_r = (this -> speed) * 32;
+    raw_l = raw_r;
     // Calculate heading: negative = left
     raw_l -= 64 * (this -> heading);
     raw_r += 64 * (this -> heading);
@@ -55,19 +55,25 @@ void Car::refresh_states() {
     raw_l = (raw_l > 255) ? 255 : raw_l;
     raw_r = (raw_r < -255) ? -255 : raw_r;
     raw_r = (raw_r > 255) ? 255 : raw_r;
-    if (raw_l > 0) {
+    update_drive_system();
+}
+
+void Car::update_drive_system() {
+    int l = raw_l + offset_l * 2 * speed;
+    int r = raw_r + offset_r * 4 * speed  + 7*speed;
+    if (l > 0) {
         PORTB |= _BV(PB6);
-        OCR0B = (uint8_t) (255 - raw_l);
+        OCR0B = (uint8_t) (255 - (l > 255 ? 255 : l));
     } else {
         PORTB &= ~(_BV(PB6));
-        OCR0B = (uint8_t) (0 - raw_l);
+        OCR0B = (uint8_t) (0 - (l < -255 ? -255 : l));
     }
-    if (raw_r > 0) {
+    if (r > 0) {
         PORTB |= _BV(PB7);
-        OCR0A = (uint8_t) (255 - raw_r);
+        OCR0A = (uint8_t) (255 - (r > 255 ? 255 : r));
     } else {
         PORTB &= ~(_BV(PB7));
-        OCR0A = (uint8_t) (0 - raw_r);
+        OCR0A = (uint8_t) (0 - (r < -255 ? -255 : r));
     }
 }
 
@@ -85,6 +91,9 @@ void Car::steer(int accel, int yaw) {
 void Car::restore(uint8_t speed, uint8_t heading) {
     if (speed) this -> speed = 0;
     if (heading) this -> heading = 0;
+    this -> offset_l = 0;
+    this -> offset_l = 0;
+    this -> turning = 0;
     this -> refresh_states();
 }
 
@@ -111,10 +120,13 @@ void Car::direct_turn(int heading) {
     cli();
     this -> lsteps = 0;
     this -> rsteps = 0;
-    this -> turn_thresh = heading * TURN_AMOUNT;
-    if (this -> turn_thresh < 0) turn_thresh = 0-turn_thresh;
+    if (heading < 0) turn_thresh = 0-heading*TURN_L;
+    else turn_thresh = heading * TURN_R;
     this -> turning = heading > 0 ? 1 : -1;
+    this -> obstacle_flag = 0;
+    this -> rewinding = 0;
     sei();
     // Set car on the run
+    this -> set_speed(0);
     this -> set_heading(heading > 0 ? 4 : -4);
 }
