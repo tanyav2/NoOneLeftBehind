@@ -20,13 +20,23 @@ The second system, **Control Gateway Unit (CGU)**, is implemented with `Arduino`
 
 ![Block Diagram](https://raw.githubusercontent.com/tanyax/NoOneLeftBehind/develop/doc/Final%20Report/img/block_diagram.png)
 
-
 <!--TODO: Insert android app function diagram and descriptions-->
-
 
 Both systems are highly scalable, as the ECU firmware only takes up 1.9 kbytes out of 4kbytes of onboard flash, and uses a mere 64 bytes out of 512 of RAM to operate. Further, the main program loop of both systems are intentially kept blank, to maintain capacity for further additions.
 
 ## 3.1.2 Archeticture of the Android Application
+
+The Android app has four use cases. 
+
+**Start Counting**- Pressing this button starts the car and allows it to intelligently traverse the entire room, avoiding obstacles and edges of tables. A function constantly keeps track of the current position of the car, and stops the car when the car comes back to it's original position. While the car is moving, the camera of the phone is tracking faces by leveraging the FaceDetector class provided by Google's Mobile Vision API. 
+Each time a new face is detected, it is added to Firebase Storage, which is an application that lets you store data and if authorized, provides access to a publicly accessible url. 
+This face is then compared against a gallery of previously stored images in a Face Recognition API, Kairos API. If it is a match, this information is recorded and uploaded to Firebase Database, which also has information about all the previously stored records and people. If it is not a match, it is recorded as an Anonymous person, and at the end of the counting session, the user, if authorized is prompted to add the details of this person to the database and the Kairos gallery. Otherwise, this image is discarded.
+
+**View previous records**- The previous records can be viewed by loading data from the firebase database into the android app.
+
+**Edit records**- This allows editing and deletion of previously stored records. This feature is only accessible to authorized users.
+
+**Edit people** This allows editing, addition and deletion of the details of each person. These details are stored in different forms both in the Firebase database and the Kairos gallery. This feature is also only accessible to authorized users.
 
 ## 3.2 Circuit Schematics
 
