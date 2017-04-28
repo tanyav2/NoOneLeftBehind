@@ -4,8 +4,6 @@
 
 <!--TODO: Add hardware considerations-->
 
-The proposed system is a large scale system performing u
-
 This chapter details several concerns encountered in the design process with brief introduction on how they have been resolved. For specific descriptions of these solutions, refer to Design Descriptions, Circuit Schematics and Mechanical Engineering Charts in Chapter 3.
 
 ### 2.2.1 Concerns over Electronic Circuit and Power Systems
