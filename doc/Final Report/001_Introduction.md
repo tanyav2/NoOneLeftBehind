@@ -13,7 +13,7 @@ The purpose of this design is to ...
 
 The project is clearly broken down into two portions: An autonomous car hardware and firmware suite that provides both remote-controlled and autonomous-assistive driving functions, and an Android app that performs photography, image recognition, mapping as well as adds intelligent guidance to the vehicle. 
 
-The Hardware Engineer, Jimmy He, is in charge of ..<!--TODO: What Jimmy is doing-->
+The Hardware Engineer, Jimmy He, is in charge of the low level control system design, specifically handling the physical aspects of the control mechanism such as circuits, microcontroller firmware, motor driving and stabilization as well as management of sensors.
 
 The Application Engineer, Tanya Verma, is in charge of ... <!--TODO: What Tanya is doing-->
 

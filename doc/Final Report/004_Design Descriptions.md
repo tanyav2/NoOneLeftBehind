@@ -41,8 +41,13 @@ The ECU and CGU are designed onto two custom-made circuit boards, and snap-fit i
 
 The chassis is custom designed to reduce form factor and weight, and are 3D printed in totality. The main body is designed around a powerbank and DC motors distributed free by the ECE110 faculty. It minimizes mechanical instability by lowering the center of gravity. The front and rear of the base plate presents four screw-mounting holes each, housing seperately made brackets for photogates and obstacle avoidance modules. 
 
-<!--TODO: Insert engineering charts and descriptions-->
 
-<!--TODO: Insert finished product photo and descriptions-->
+## 3.4 Brief Procedure of Operation
 
-## 3.4 In the Run
+To begin operation, one pushes the power switch on the battery pack. The ECU and CGU boots up with a brief self-test procedure, while the CGU presents a Wi-Fi hotspot. One connects to the hotspot with the phone, launches the Android application and mounts the phone on the camera gimbal on top of the chassis.
+
+To begin a face scan, simply push the "Start" button on the phone screen. It begins by querying the car for ambient brightness, and using this value to determine the highest speed the car can go. It then sets the car on the move. The car autonomously calibrates its motion path to ensure a straight line motion is obtained. When a face is detected in the view of the camera, the app commands to stop the vehicle, and takes a better quality picture and uploads the picture to Firebase for facial recognition. During the movement, the app keeps polling the status update API to take note of the distance travelled so far on an internal map.
+
+When the car runs towards the end of the table, the ECU detects the presence of front barrier or the abscence of table surface (for a table without edges) via the two forward-facing IR sensors. This triggers an automatic stop, and an obstacle flag is sent to the application via the CGU. The app issues a command for the car to turn according to a specified angle and stops. Then, the app continues sets the car on the move again, repeating the photo-taking procedure until it has returned to its original position, according to the internal mapping algorithm.
+
+Finally, the car polls an external Facial Recognition API to detect faces from all pictures taken through the journey, and produces a list of people present in the room on its screen.
