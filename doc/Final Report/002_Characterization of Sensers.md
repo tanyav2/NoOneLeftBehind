@@ -42,3 +42,4 @@ Deduced from the graph, the input pulse width `y us` follows an approximate line
 The photoresistor is used to capture the intensity of ambient light. This is crucial to the phototaking process of the phone attached, as a different lighting condition requires a different shutter speed to take an acceptable image, thus affecting the maximum speed the car can travel at. The CdS photoresistor used by the project is a light-sensitive passive component whose resistance decreases when exposed to stronger light. To translate this into a readable voltage level, a 10K pullup resistor is added (fn)[See ECU Circuit Schematic at Appendix A, R2] The resistance as well as voltage output of the sensor are graphed as shown:
 
 ![Alt](https://raw.githubusercontent.com/tanyax/NoOneLeftBehind/develop/doc/Final%20Report/img/cds.png)
+

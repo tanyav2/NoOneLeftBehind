@@ -16,3 +16,4 @@ them	to	the	database	if	they’re	not	already	present at the request of the user
 The project has two major portions: An autonomous car that provides both remote-controlled and programmitically controlled driving functions, and an Android app that performs image detection and recognition, intelligent path control of the car and storage of data in a database.
 
 The two portions interface via a API, implemented over HTTP (Hyper Text Transfer Protocol). This API provides an abstraction over the controls of the car, which allows easy manipulation and guidance of the vehicle through the Android app.
+

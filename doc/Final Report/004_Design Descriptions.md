@@ -61,3 +61,4 @@ To begin a face scan, simply push the "Start" button on the phone screen. It beg
 When the car runs towards the end of the table, the ECU detects the presence of front barrier or the abscence of table surface (for a table without edges) via the two forward-facing IR sensors. This triggers an automatic stop, and an obstacle flag is sent to the application via the CGU. The app issues a command for the car to turn according to a specified angle and stops. Then, the app continues sets the car on the move again, repeating the photo-taking procedure until it has returned to its original position, according to the internal mapping algorithm.
 
 Finally, the car polls an external Facial Recognition API to detect faces from all pictures taken through the journey, and produces a list of people present in the room on its screen.
+

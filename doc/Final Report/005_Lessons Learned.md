@@ -9,3 +9,4 @@ The system engineering of the chasis is a clear demonstration of deterministical
 
 <!--TODO: Insert Lessons on Android App-->
 The API for car control was very useful in designing the Android app and implementing path control as it abstracted away all the system and hardware details. Thus it allowed great flexibility for controlling the car.
+

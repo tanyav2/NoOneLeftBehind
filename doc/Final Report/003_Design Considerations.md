@@ -40,3 +40,4 @@ Needless to explain, the car requires meticulous considerations over mechanical 
 The solution is to design every component independently and test each with 3D printing until they guarantee a tight fit. Structually critical parts such as the pylons where motors attach to, and the baseplate that houses the battery, are mated on the CAD software and printed as an integral part. Other parts such as the sensor mounters and phone mounts are printed independently and mated onto the pre-designed screw-hole attachment points.
 
 To ensure stability of the images taken with the phone mounted on top, the top plate is screwed to a gimbal mount salvaged from a portable tripod. The battery is lowered to close to the ground to provide a low center of gravity, similar to the design of Tesla Model S. The top dome covers all the mounting points with screws and nuts, hence doubling itself as a washer for senser mounts, bringing integrity to the entire structure.
+
