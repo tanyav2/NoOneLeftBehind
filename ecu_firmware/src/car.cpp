@@ -60,7 +60,7 @@ void Car::refresh_states() {
 
 void Car::update_drive_system() {
     int l = raw_l + offset_l * 2 * speed;
-    int r = raw_r + offset_r * 4 * speed  + 7*speed;
+    int r = raw_r + offset_r * 3 * speed + 5*speed;
     if (l > 0) {
         PORTB |= _BV(PB6);
         OCR0B = (uint8_t) (255 - (l > 255 ? 255 : l));
